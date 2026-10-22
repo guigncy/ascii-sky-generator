@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Night Sky Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <aside class="sidebar">
+      <h1 class="app-title">NIGHT SKY<br>GENERATOR</h1>
+
+      <section class="control-group">
+        <h2 class="group-title">CANVAS</h2>
+
+        <label class="control-label" for="resolutionPreset">Resolution</label>
+        <select id="resolutionPreset" class="control-select">
+          <optgroup label="Landscape">
+            <option value="1920x1080">1920 x 1080</option>
+            <option value="2560x1440">2560 x 1440</option>
+            <option value="3840x2160">3840 x 2160</option>
+          </optgroup>
+          <optgroup label="Portrait">
+            <option value="1080x1920">1080 x 1920</option>
+            <option value="1440x2560">1440 x 2560</option>
+            <option value="2160x3840">2160 x 3840</option>
+          </optgroup>
+          <option value="custom">Custom</option>
+        </select>
+
+        <div id="customResolution" class="hidden">
+          <div class="inline-inputs">
+            <div class="input-pair">
+              <label class="control-label" for="customWidth">W</label>
+              <input id="customWidth" type="number" class="control-input" value="1920" min="320" max="7680" />
+            </div>
+            <div class="input-pair">
+              <label class="control-label" for="customHeight">H</label>
+              <input id="customHeight" type="number" class="control-input" value="1080" min="240" max="4320" />
+            </div>
+          </div>
+        </div>
+
+        <label class="control-label" for="fontSize">
+          Font size <span class="val" id="fontSizeVal">16</span>
+        </label>
+        <input id="fontSize" type="range" class="control-range" min="8" max="32" value="16" />
+      </section>
+
+      <section class="control-group">
+        <h2 class="group-title">SKY</h2>
+
+        <label class="control-label" for="starDensity">
+          Stars <span class="val" id="starDensityVal">5%</span>
+        </label>
+        <input id="starDensity" type="range" class="control-range" min="0" max="20" value="5" />
+
+        <label class="control-label" for="moonCount">
+          Moons <span class="val" id="moonCountVal">1</span>
+        </label>
+        <input id="moonCount" type="range" class="control-range" min="0" max="8" value="1" />
+
+        <label class="control-label" for="moonStyle">Moon style</label>
+        <select id="moonStyle" class="control-select">
+          <option value="crescentLeft">Crescent left</option>
+          <option value="crescentRight">Crescent right</option>
+          <option value="random" selected>Random</option>
+        </select>
+
+        <label class="control-label" for="bigStarCount">
+          Big stars <span class="val" id="bigStarCountVal">3</span>
+        </label>
+        <input id="bigStarCount" type="range" class="control-range" min="0" max="30" value="3" />
+
+        <label class="control-label" for="cometCount">
+          Comets <span class="val" id="cometCountVal">2</span>
+        </label>
+        <input id="cometCount" type="range" class="control-range" min="0" max="20" value="2" />
+      </section>
+
+      <section class="control-group">
+        <h2 class="group-title">COLORS</h2>
+
+        <div class="color-row">
+          <label class="control-label" for="bgColor">Background</label>
+          <input id="bgColor" type="color" class="control-color" value="#000000" />
+        </div>
+        <div class="color-row">
+          <label class="control-label" for="textColor">Text</label>
+          <input id="textColor" type="color" class="control-color" value="#ffffff" />
+        </div>
+      </section>
+
+      <section class="actions">
+        <button id="btnRegenerate" class="btn">Regenerate</button>
+        <button id="btnRestore" class="btn">Restore defaults</button>
+        <button id="btnDownload" class="btn">Download PNG</button>
+      </section>
+    </aside>
+
+    <main class="preview-area">
+      <canvas id="skyCanvas"></canvas>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

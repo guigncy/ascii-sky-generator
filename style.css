@@ -1,0 +1,230 @@
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Tokens ────────────────────────────────────────────────────── */
+:root {
+  --bg:      #000000;
+  --fg:      #ffffff;
+  --dim:     #666666;
+  --line:    #333333;
+  --sidebar: 260px;
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* ── Layout ────────────────────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar);
+  min-width: var(--sidebar);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  gap: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.app-title {
+  font-size: 17px;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  color: var(--fg);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── Control Groups ────────────────────────────────────────────── */
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.group-title {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 2px;
+}
+
+/* ── Labels ────────────────────────────────────────────────────── */
+.control-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--fg);
+  user-select: none;
+}
+
+.val {
+  color: var(--dim);
+  font-size: 11px;
+  min-width: 24px;
+  text-align: right;
+}
+
+/* ── Range Slider ──────────────────────────────────────────────── */
+.control-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.control-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 9px;
+  height: 9px;
+  background: var(--fg);
+  cursor: pointer;
+}
+
+.control-range::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: none;
+  background: var(--fg);
+  cursor: pointer;
+}
+
+/* ── Select ────────────────────────────────────────────────────── */
+.control-select {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  font-family: monospace;
+  font-size: 12px;
+  padding: 5px 8px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.control-select:hover,
+.control-select:focus { border-color: var(--fg); }
+
+.control-select option,
+.control-select optgroup { background: #111; font-style: normal; }
+
+/* ── Number Input ──────────────────────────────────────────────── */
+.control-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  font-family: monospace;
+  font-size: 12px;
+  padding: 5px 8px;
+  outline: none;
+}
+
+.control-input:focus { border-color: var(--fg); }
+
+/* ── Inline width/height inputs ────────────────────────────────── */
+.inline-inputs { display: flex; gap: 8px; margin-top: 2px; }
+.input-pair    { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+.hidden { display: none !important; }
+
+/* ── Color Pickers ─────────────────────────────────────────────── */
+.color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control-color {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 36px;
+  height: 22px;
+  border: 1px solid var(--line);
+  padding: 1px;
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.control-color::-webkit-color-swatch-wrapper { padding: 0; }
+.control-color::-webkit-color-swatch         { border: none; }
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+.actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.btn {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-align: left;
+}
+
+.btn:hover  { border-color: var(--fg); }
+.btn:active { background: var(--fg); color: var(--bg); }
+
+/* ── Preview ───────────────────────────────────────────────────── */
+.preview-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+#skyCanvas {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .app-layout   { flex-direction: column; overflow: auto; }
+  .sidebar      { width: 100%; min-width: unset; max-height: 55vh; }
+  .preview-area { padding: 12px; }
+  html, body    { overflow: auto; }
+}
