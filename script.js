@@ -85,6 +85,8 @@ const STAMPS = {
   ],
 };
 
+const COMET_POOL = [STAMPS.cometH, STAMPS.cometDiagDown, STAMPS.cometDiagUp];
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function randInt(min, max) { return Math.floor(Math.random() * (max - min)) + min; }
@@ -92,10 +94,6 @@ function pick(arr)         { return arr[randInt(0, arr.length)]; }
 function clamp(v, lo, hi)  { return Math.max(lo, Math.min(hi, v)); }
 
 // ── Grid ─────────────────────────────────────────────────────────────────────
-
-function makeGrid(rows, cols) {
-  return Array.from({ length: rows }, () => new Array(cols).fill(' '));
-}
 
 // Writes a stamp onto the grid. Spaces = transparent, '#' = dark fill, else = draw char.
 function stampOnGrid(grid, rows, cols, template, sr, sc) {
@@ -154,7 +152,7 @@ function generateSky() {
   const rows = Math.floor(canvasH / charH);
 
   // Build grid
-  const grid = makeGrid(rows, cols);
+  const grid = Array.from({ length: rows }, () => new Array(cols).fill(' '));
 
   // Layer 1 — small background stars
   const STAR_CHARS = ['.', '+', '*', 'o', "'"];
@@ -165,7 +163,6 @@ function generateSky() {
   }
 
   // Layer 2 — comets
-  const COMET_POOL = [STAMPS.cometH, STAMPS.cometDiagDown, STAMPS.cometDiagUp];
   for (let i = 0; i < comets; i++) {
     placeStamp(grid, rows, cols, pick(COMET_POOL));
   }
